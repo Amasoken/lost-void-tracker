@@ -13,9 +13,10 @@ interface Props {
 export default function Card({ active, index, onClick, className = '', cardType }: Props) {
     const activeClass = `${active ? '' : 'opacity-20 hover:opacity-70'} ${className}`;
     const levelHint = index % 2 === 0 ? 'lvl ' + (Math.floor(index / 2) + 1) : '';
+
     return (
         <CardGradient
-            className={`cursor-pointer select-none flex flex-col items-center justify-between w-24 h-32 m-1 rounded-md border-2 border-solid border-slate-600 hover:border-lime-400 ${activeClass}`}
+            className={`cursor-pointer select-none flex flex-col items-center justify-between w-24 h-32 m-1 rounded-md border-2 border-solid border-transparent hover:border-lime-400 ${activeClass}`}
             onClick={onClick}
             cardType={cardType}
         >

@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
     cardType: CardTypes;
-    className: string;
+    className?: string;
     children: ReactNode;
 }
 

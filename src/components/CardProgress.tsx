@@ -14,15 +14,20 @@ export default function CardProgress({ cardType }: Props) {
     return (
         <div className='flex min-w-max'>
             <div className='grid grid-cols-3'>
-                {new Array(6).fill(null).map((_, index) => (
-                    <Card
-                        key={index}
-                        active={cardAmount >= index + 1}
-                        index={index + 1}
-                        cardType={cardType}
-                        onClick={() => dispatch(setCardCount({ cardType, value: index + 1 }))}
-                    />
-                ))}
+                {new Array(6).fill(null).map((_, index) => {
+                    const isActive = cardAmount >= index + 1;
+                    const isCurrent = cardAmount === index + 1;
+
+                    return (
+                        <Card
+                            key={index}
+                            active={isActive}
+                            index={index + 1}
+                            cardType={cardType}
+                            onClick={() => dispatch(setCardCount({ cardType, value: isCurrent ? index : index + 1 }))}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

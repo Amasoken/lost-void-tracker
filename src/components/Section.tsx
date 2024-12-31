@@ -9,9 +9,9 @@ interface Props {
 
 export default function Section({ cardType, className = '' }: Props) {
     return (
-        <div className={'bg-teal-400 flex flex-col justify-between max-w-fit ' + className}>
+        <div className={'flex flex-col justify-between max-w-fit ' + className}>
+            <div className='text-center text-4xl text-slate-100 text-shadow py-2'>{`[${cardType}]`}</div>
             <CardProgress cardType={cardType} />
-            <div className='bg-blue-400 text-center text-4xl py-2'>{`[${cardType}]`}</div>
             <GearProgress cardType={cardType} />
         </div>
     );
