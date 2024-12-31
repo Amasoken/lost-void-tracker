@@ -1,4 +1,4 @@
-import { cardSelectors, setCardCount } from '@/lib/features/card/cardSlice';
+import { cardSelectors, setCardCount } from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { CardTypes } from '@/types/enums';
 import Card from './Card';
@@ -14,14 +14,14 @@ export default function CardProgress({ cardType }: Props) {
     return (
         <div className='flex min-w-max'>
             <div className='grid grid-cols-3'>
-                {new Array(6).fill(null).map((_, index) => {
+                {Array.from({ length: 6 }, (_, index) => {
                     const isActive = cardAmount >= index + 1;
                     const isCurrent = cardAmount === index + 1;
 
                     return (
                         <Card
                             key={index}
-                            active={isActive}
+                            isActive={isActive}
                             index={index + 1}
                             cardType={cardType}
                             onClick={() => dispatch(setCardCount({ cardType, value: isCurrent ? index : index + 1 }))}

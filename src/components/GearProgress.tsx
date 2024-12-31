@@ -1,4 +1,9 @@
-import { selectActive, selectHidden, toggleActive, toggleHidden } from '@/lib/features/gear/gearSlice';
+import {
+    selectActiveGear,
+    selectHiddenGear,
+    toggleActiveGear,
+    toggleHiddenGear,
+} from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { CardTypes } from '@/types/enums';
 import Gear from './Gear';
@@ -10,8 +15,8 @@ interface Props {
 
 export default function GearProgress({ cardType }: Props) {
     const dispatch = useAppDispatch();
-    const activeGear = useAppSelector(selectActive);
-    const hiddenGear = useAppSelector(selectHidden);
+    const activeGear = useAppSelector(selectActiveGear);
+    const hiddenGear = useAppSelector(selectHiddenGear);
 
     const typeIndex = Object.values(CardTypes).indexOf(cardType) + 1;
     const gearIndex = [typeIndex * 2 - 1, typeIndex * 2];
@@ -25,10 +30,10 @@ export default function GearProgress({ cardType }: Props) {
                     cardType={cardType}
                     index={currentGearIndex}
                     hiddenCount={hiddenCount}
-                    active={activeGear[currentGearIndex - 1]}
-                    setActive={() => dispatch(toggleActive(currentGearIndex - 1))}
-                    hidden={hiddenGear[currentGearIndex - 1]}
-                    setHidden={() => dispatch(toggleHidden(currentGearIndex - 1))}
+                    isActive={activeGear[currentGearIndex - 1]}
+                    setActive={() => dispatch(toggleActiveGear(currentGearIndex - 1))}
+                    isHidden={hiddenGear[currentGearIndex - 1]}
+                    setHidden={() => dispatch(toggleHiddenGear(currentGearIndex - 1))}
                 />
             ))}
         </div>
