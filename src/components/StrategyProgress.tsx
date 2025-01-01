@@ -7,15 +7,15 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Strategy from './Strategy';
 
 const strategyList: string[] = [
-    'Resonium Passion Strategy',
-    'Treasure Hunter Strategy',
-    'Fully Armed Strategy',
-    'Entrepreneurs Strategy',
-    'Recovery Strategy',
-    'Looting Strategy',
-    'Defence Strategy',
-    'Ambush Strategy',
-    'Reinforcement Strategy',
+    'Resonium Passion',
+    'Treasure Hunter',
+    'Fully Armed',
+    'Entrepreneurs',
+    'Recovery',
+    'Looting',
+    'Defence',
+    'Ambush',
+    'Reinforcement',
 ];
 
 export default function StrategyProgress() {
@@ -24,7 +24,7 @@ export default function StrategyProgress() {
     const strategyProgress = useAppSelector(selectStrategyProgress);
 
     return (
-        <div className='w-full min-w-max flex justify-between'>
+        <div className='w-full grid justify-items-center grid-cols-3 gap-2 md:grid-cols-5 lg:grid-cols-9'>
             {strategyList.map((strategy, index) => (
                 <Strategy
                     key={strategy}

@@ -8,9 +8,9 @@ interface Props {
 export default function Badge({ className = '', children }: Props) {
     return (
         <div className={className}>
-            <div className='z-30 bg-transparent w-9 h-9 rounded-full absolute border-neutral-300 border-solid border-4'></div>
-            <div className='z-20 bg-neutral-800 w-9 h-9 text-center text-2xl text-slate-300 font-semibold rounded-full absolute border-purple-500 border-solid border-[6px] leading-none'>
-                {children}
+            <div className='z-30 bg-transparent size-9 max-w-full max-h-full rounded-full absolute border-neutral-300 border-solid border-4'></div>
+            <div className='z-20 flex items-center justify-center bg-neutral-800 size-9 max-w-full max-h-full rounded-full absolute border-purple-500 border-solid border-[6px]'>
+                <div className='text-xl text-slate-300 font-semibold lg:text-2xl'>{children}</div>
             </div>
         </div>
     );

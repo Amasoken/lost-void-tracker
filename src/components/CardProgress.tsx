@@ -12,23 +12,21 @@ export default function CardProgress({ cardType }: Props) {
     const cardAmount = useAppSelector(cardSelectors[cardType]);
 
     return (
-        <div className='flex min-w-max'>
-            <div className='grid grid-cols-3'>
-                {Array.from({ length: 6 }, (_, index) => {
-                    const isActive = cardAmount >= index + 1;
-                    const isCurrent = cardAmount === index + 1;
+        <div className='grid grid-cols-3 w-full gap-1 lg:gap-2 xl:gap-3 2xl:gap-4'>
+            {Array.from({ length: 6 }, (_, index) => {
+                const isActive = cardAmount >= index + 1;
+                const isCurrent = cardAmount === index + 1;
 
-                    return (
-                        <Card
-                            key={index}
-                            isActive={isActive}
-                            index={index + 1}
-                            cardType={cardType}
-                            onClick={() => dispatch(setCardCount({ cardType, value: isCurrent ? index : index + 1 }))}
-                        />
-                    );
-                })}
-            </div>
+                return (
+                    <Card
+                        key={index}
+                        isActive={isActive}
+                        index={index + 1}
+                        cardType={cardType}
+                        onClick={() => dispatch(setCardCount({ cardType, value: isCurrent ? index : index + 1 }))}
+                    />
+                );
+            })}
         </div>
     );
 }

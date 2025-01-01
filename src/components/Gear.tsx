@@ -20,11 +20,11 @@ interface ButtonProps {
     children: ReactNode;
 }
 
-function Button({ className, onClick, children }: ButtonProps) {
+function Button({ className = '', onClick, children }: ButtonProps) {
     return (
         <button
             onClick={onClick}
-            className={`pointer rounded-lg border-2 border-solid border-neutral-600 bg-neutral-900 hover:bg-neutral-700 text-xl text-slate-50 w-full h-12 ${className}`}
+            className={`pointer rounded-lg border-2 border-solid border-neutral-600 bg-neutral-900 hover:bg-neutral-700 text-md text-slate-50 w-full h-10 ${className}`}
         >
             {children}
         </button>
@@ -33,11 +33,11 @@ function Button({ className, onClick, children }: ButtonProps) {
 
 export default function Gear({ index, hiddenCount, isActive, setActive, isHidden, setHidden }: Props) {
     return (
-        <div className='flex flex-col justify-self-center items-center mx-2 mt-4 select-none'>
+        <div className='flex flex-col justify-self-center items-center mx-1'>
             <div className={`w-fit relative min-w-fit min-h-fit`}>
                 {isHidden && <Badge>{hiddenCount}</Badge>}
                 <div
-                    className={`z-0 bg-transparent w-full h-full rounded-full absolute border-solid border-8 ${
+                    className={`z-0 bg-transparent w-full h-full rounded-full absolute border-solid border-[6px] lg:border-8 ${
                         isActive ? 'border-lime-400' : 'border-neutral-700'
                     }`}
                 />
@@ -50,9 +50,11 @@ export default function Gear({ index, hiddenCount, isActive, setActive, isHidden
                 />
             </div>
 
-            <div className='flex flex-col w-full max-w-full h-full justify-between mt-2'>
-                <Button onClick={setActive}>{isActive ? 'Remove' : 'Add +'}</Button>
-                <Button onClick={setHidden} className='mt-2'>
+            <div className='flex flex-col whitespace-nowrap w-full max-w-full h-full justify-between mt-2 '>
+                <Button onClick={setActive} className='lg:h-12 lg:text-xl'>
+                    {isActive ? 'Remove' : 'Add +'}
+                </Button>
+                <Button onClick={setHidden} className='mt-2 lg:h-12 lg:text-xl'>
                     {isHidden ? 'Badge –' : 'Badge +'}
                 </Button>
             </div>
