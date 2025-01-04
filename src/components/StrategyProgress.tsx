@@ -1,8 +1,4 @@
-import {
-    selectCurrentStrategy,
-    selectStrategyProgress,
-    setCurrentStrategy,
-} from '@/lib/features/strategy/strategySlice';
+import { selectCurrentStrategy, selectStrategyData, setCurrentStrategy } from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Strategy from './Strategy';
 
@@ -21,7 +17,8 @@ const strategyList: string[] = [
 export default function StrategyProgress() {
     const dispatch = useAppDispatch();
     const currentStrategy = useAppSelector(selectCurrentStrategy);
-    const strategyProgress = useAppSelector(selectStrategyProgress);
+    const strategyProgress = useAppSelector(selectStrategyData);
+    const progressByStrategy = strategyProgress.map((data) => data.gear.hidden.filter((status) => status).length);
 
     return (
         <div className='w-full grid justify-items-center grid-cols-3 gap-2 md:grid-cols-5 lg:grid-cols-9'>
@@ -30,7 +27,7 @@ export default function StrategyProgress() {
                     key={strategy}
                     name={strategy}
                     index={index + 1}
-                    value={strategyProgress[index]}
+                    value={progressByStrategy[index]}
                     isActive={index + 1 === currentStrategy}
                     onClick={() => dispatch(setCurrentStrategy(index + 1))}
                 />

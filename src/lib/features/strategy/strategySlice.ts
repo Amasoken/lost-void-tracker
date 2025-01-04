@@ -1,7 +1,6 @@
 import { CardTypes } from '@/types/enums';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { memoize } from 'proxy-memoize';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface CardState {
     [CardTypes.ultimate]: number;
@@ -85,11 +84,5 @@ export const { setCurrentStrategy, toggleActiveGear, toggleHiddenGear, setCardCo
 
 export const { selectCurrentStrategy, selectActiveGear, selectHiddenGear, selectStrategyData, ...cardSelectors } =
     strategySlice.selectors;
-
-export const selectStrategyProgress = createSelector(
-    selectStrategyData,
-    // Avoid new array every call. Only recalculate when gear.hidden is accessed
-    memoize((data) => data.map(({ gear }) => gear.hidden.filter((status) => status).length))
-);
 
 export default strategySlice.reducer;
