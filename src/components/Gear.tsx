@@ -43,7 +43,7 @@ export default function Gear({ index, hiddenCount, isActive, setActive, isHidden
                 />
                 <Image
                     className='z-10'
-                    src={`/artifacts/${index}.webp`}
+                    src={`/gear/${index}.webp`}
                     alt={`Gear #${index}`}
                     width={115}
                     height={115}
