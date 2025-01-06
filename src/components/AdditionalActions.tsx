@@ -9,32 +9,18 @@ import {
 } from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch } from '@/lib/hooks';
 import stateSchema from '@/lib/validation/stateSchema';
-import { useState, type HTMLAttributes, type ReactNode } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import BaseButton, { Props as ButtonProps } from './common/Button';
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-    children: ReactNode;
-    className?: string;
-    border?: string;
-    background?: string;
-}
+const withSpacing = (WrappedComponent: React.FC<ButtonProps>) => {
+    return (props: ButtonProps) => {
+        const { className = '', ...restProps } = props;
+        return <WrappedComponent className={`mb-2 px-2 ${className}`} {...restProps} />;
+    };
+};
 
-function Button({
-    children,
-    className = '',
-    border = 'border-neutral-600',
-    background = 'bg-neutral-900 hover:bg-neutral-700',
-    ...restProps
-}: ButtonProps) {
-    return (
-        <button
-            className={`mb-2 px-2 w-full h-10 pointer rounded-lg border-2 border-solid ${border} ${background} text-slate-50 ${className}`}
-            {...restProps}
-        >
-            {children}
-        </button>
-    );
-}
+const Button = withSpacing(BaseButton);
 
 export default function AdditionalActions() {
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
