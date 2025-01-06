@@ -77,7 +77,7 @@ export const strategySlice = createSlice({
             getCurrentData(state).cards = { ...initialState.data[0].cards };
         },
         resetCurrentBadges: (state) => {
-            getCurrentGear(state).badges = getCurrentGear(state).badges.map((badge) => false);
+            getCurrentGear(state).badges = getCurrentGear(state).badges.map(() => false);
         },
 
         // reset state but keep the current strategy
@@ -94,7 +94,7 @@ export const strategySlice = createSlice({
         selectState: (state) => state,
 
         selectActiveGear: (state) => getCurrentGear(state).active,
-        selectHiddenGear: (state) => getCurrentGear(state).badges,
+        selectGearBadges: (state) => getCurrentGear(state).badges,
 
         [CardTypes.ultimate]: (state) => getCurrentCards(state)[CardTypes.ultimate],
         [CardTypes.anomaly]: (state) => getCurrentCards(state)[CardTypes.anomaly],
@@ -119,7 +119,7 @@ export const {
 export const {
     selectCurrentStrategy,
     selectActiveGear,
-    selectHiddenGear,
+    selectGearBadges,
     selectStrategyData,
     selectState,
     ...cardSelectors

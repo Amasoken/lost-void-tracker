@@ -1,6 +1,6 @@
 import {
     selectActiveGear,
-    selectHiddenGear,
+    selectGearBadges,
     toggleActiveGear,
     toggleGearBadge,
 } from '@/lib/features/strategy/strategySlice';
@@ -16,11 +16,11 @@ interface Props {
 export default function GearProgress({ cardType }: Props) {
     const dispatch = useAppDispatch();
     const activeGear = useAppSelector(selectActiveGear);
-    const hiddenGear = useAppSelector(selectHiddenGear);
+    const gearBadges = useAppSelector(selectGearBadges);
 
     const typeIndex = Object.values(CardTypes).indexOf(cardType) + 1;
     const gearIndex = [typeIndex * 2 - 1, typeIndex * 2];
-    const hiddenCount = hiddenGear.filter((g) => g).length;
+    const badgeCount = gearBadges.filter((g) => g).length;
 
     return (
         <div className='grid grid-cols-2'>
@@ -29,11 +29,10 @@ export default function GearProgress({ cardType }: Props) {
                     key={currentGearIndex}
                     cardType={cardType}
                     index={currentGearIndex}
-                    hiddenCount={hiddenCount}
+                    badge={gearBadges[currentGearIndex - 1] ? badgeCount : 0}
                     isActive={activeGear[currentGearIndex - 1]}
                     setActive={() => dispatch(toggleActiveGear(currentGearIndex - 1))}
-                    isHidden={hiddenGear[currentGearIndex - 1]}
-                    setHidden={() => dispatch(toggleGearBadge(currentGearIndex - 1))}
+                    toggleBadge={() => dispatch(toggleGearBadge(currentGearIndex - 1))}
                 />
             ))}
         </div>

@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import BaseButton, { Props as ButtonProps } from './common/Button';
 
 const withSpacing = (WrappedComponent: React.FC<ButtonProps>) => {
-    return (props: ButtonProps) => {
+    return function ButtonWithSpacing(props: ButtonProps) {
         const { className = '', ...restProps } = props;
         return <WrappedComponent className={`mb-2 px-2 ${className}`} {...restProps} />;
     };
@@ -49,7 +49,7 @@ export default function AdditionalActions() {
             return;
         }
 
-        const showError = (error: any) => {
+        const showError = (error: unknown) => {
             alert(`Please provide a valid JSON you got with export.\nError: ${error}`);
         };
 
@@ -71,7 +71,7 @@ export default function AdditionalActions() {
     };
 
     return (
-        <div className='z-40 left-10 -top-4 absolute'>
+        <div className='z-40 left-4 sm:left-10 -top-4 absolute'>
             <Button
                 className='px-4 max-w-fit mb-0'
                 border={menuOpen ? 'border-lime-400' : 'border-neutral-800 hover:border-lime-400'}
