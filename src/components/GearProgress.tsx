@@ -2,7 +2,7 @@ import {
     selectActiveGear,
     selectHiddenGear,
     toggleActiveGear,
-    toggleHiddenGear,
+    toggleGearBadge,
 } from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { CardTypes } from '@/types/enums';
@@ -33,7 +33,7 @@ export default function GearProgress({ cardType }: Props) {
                     isActive={activeGear[currentGearIndex - 1]}
                     setActive={() => dispatch(toggleActiveGear(currentGearIndex - 1))}
                     isHidden={hiddenGear[currentGearIndex - 1]}
-                    setHidden={() => dispatch(toggleHiddenGear(currentGearIndex - 1))}
+                    setHidden={() => dispatch(toggleGearBadge(currentGearIndex - 1))}
                 />
             ))}
         </div>

@@ -11,7 +11,7 @@ interface CardState {
 
 interface GearState {
     active: boolean[];
-    hidden: boolean[];
+    badges: boolean[];
 }
 
 // gear and card state stored per strategy, in other words "save slots"
@@ -25,7 +25,7 @@ const initialState: StrategyState = {
     data: Array.from({ length: 9 }, () => ({
         gear: {
             active: [false, false, false, false, false, false, false, false],
-            hidden: [false, false, false, false, false, false, false, false],
+            badges: [false, false, false, false, false, false, false, false],
         },
         cards: {
             [CardTypes.ultimate]: 0,
@@ -59,19 +59,42 @@ export const strategySlice = createSlice({
         toggleActiveGear: (state, action: PayloadAction<number>) => {
             getCurrentGear(state).active[action.payload] = !getCurrentGear(state).active[action.payload];
         },
-        toggleHiddenGear: (state, action: PayloadAction<number>) => {
-            getCurrentGear(state).hidden[action.payload] = !getCurrentGear(state).hidden[action.payload];
+        toggleGearBadge: (state, action: PayloadAction<number>) => {
+            getCurrentGear(state).badges[action.payload] = !getCurrentGear(state).badges[action.payload];
         },
         setCardCount: (state, action: PayloadAction<{ cardType: CardTypes; value: number }>) => {
             getCurrentCards(state)[action.payload.cardType] = action.payload.value;
+        },
+
+        resetCurrentCards: (state) => {
+            getCurrentData(state).cards = { ...initialState.data[0].cards };
+        },
+        resetCurrentGear: (state) => {
+            getCurrentGear(state).active = getCurrentGear(state).active.map(() => false);
+        },
+        resetCurrentGearAndCards: (state) => {
+            getCurrentGear(state).active = getCurrentGear(state).active.map(() => false);
+            getCurrentData(state).cards = { ...initialState.data[0].cards };
+        },
+        resetCurrentBadges: (state) => {
+            getCurrentGear(state).badges = getCurrentGear(state).badges.map((badge) => false);
+        },
+
+        // reset state but keep the current strategy
+        importState: (state, action: PayloadAction<{ state: StrategyState }>) => {
+            state.data = [...action.payload.state.data];
+        },
+        resetState: (state) => {
+            state.data = [...initialState.data];
         },
     },
     selectors: {
         selectCurrentStrategy: (state) => state.currentStrategy,
         selectStrategyData: (state) => state.data,
+        selectState: (state) => state,
 
         selectActiveGear: (state) => getCurrentGear(state).active,
-        selectHiddenGear: (state) => getCurrentGear(state).hidden,
+        selectHiddenGear: (state) => getCurrentGear(state).badges,
 
         [CardTypes.ultimate]: (state) => getCurrentCards(state)[CardTypes.ultimate],
         [CardTypes.anomaly]: (state) => getCurrentCards(state)[CardTypes.anomaly],
@@ -80,9 +103,26 @@ export const strategySlice = createSlice({
     },
 });
 
-export const { setCurrentStrategy, toggleActiveGear, toggleHiddenGear, setCardCount } = strategySlice.actions;
+export const {
+    setCurrentStrategy,
+    toggleActiveGear,
+    toggleGearBadge,
+    setCardCount,
+    resetCurrentCards,
+    resetCurrentGear,
+    resetCurrentGearAndCards,
+    resetCurrentBadges,
+    importState,
+    resetState,
+} = strategySlice.actions;
 
-export const { selectCurrentStrategy, selectActiveGear, selectHiddenGear, selectStrategyData, ...cardSelectors } =
-    strategySlice.selectors;
+export const {
+    selectCurrentStrategy,
+    selectActiveGear,
+    selectHiddenGear,
+    selectStrategyData,
+    selectState,
+    ...cardSelectors
+} = strategySlice.selectors;
 
 export default strategySlice.reducer;

@@ -18,7 +18,7 @@ export default function StrategyProgress() {
     const dispatch = useAppDispatch();
     const currentStrategy = useAppSelector(selectCurrentStrategy);
     const strategyProgress = useAppSelector(selectStrategyData);
-    const progressByStrategy = strategyProgress.map((data) => data.gear.hidden.filter((status) => status).length);
+    const progressByStrategy = strategyProgress.map((data) => data.gear.badges.filter((status) => status).length);
 
     return (
         <div className='w-full grid justify-items-center grid-cols-3 gap-2 md:grid-cols-5 lg:grid-cols-9'>
