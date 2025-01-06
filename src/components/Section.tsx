@@ -1,6 +1,6 @@
 import type { CardTypes } from '@/types/enums';
-import CardProgress from './CardProgress';
-import GearProgress from './GearProgress';
+import CardProgress from './card/CardProgress';
+import GearProgress from './gear/GearProgress';
 
 interface Props {
     cardType: CardTypes;

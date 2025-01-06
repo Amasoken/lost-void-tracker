@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Badge from './Badge';
+import Badge from '../common/Badge';
 
 interface Props {
     name: string;

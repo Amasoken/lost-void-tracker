@@ -2,7 +2,7 @@
 
 import AdditionalActions from '@/components/AdditionalActions';
 import Section from '@/components/Section';
-import StrategyProgress from '@/components/StrategyProgress';
+import StrategyProgress from '@/components/strategy/StrategyProgress';
 import { CardTypes } from '@/types/enums';
 
 export default function Page() {

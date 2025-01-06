@@ -1,7 +1,7 @@
 import { CardTypes } from '@/types/enums';
 import Image from 'next/image';
-import Badge from './Badge';
-import Button from './common/Button';
+import Badge from '../common/Badge';
+import Button from '../common/Button';
 
 interface Props {
     cardType: CardTypes;
