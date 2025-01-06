@@ -33,13 +33,11 @@ export default function Home() {
                 </div>
             </main>
 
-            <div className=' max-w-[80%] fixed right-0 bottom-0'>
+            <div className='max-w-[80%] fixed right-0 bottom-0'>
                 <Image src={'/404.webp'} width={512} height={512} alt='' priority />
             </div>
 
             <div className='fixed right-0 bottom-0 py-1 px-2 text-shadow'>UID: NOTHANKYOU</div>
-
-            <footer className=''></footer>
         </div>
     );
 }
