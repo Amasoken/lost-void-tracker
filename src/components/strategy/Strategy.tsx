@@ -10,9 +10,11 @@ interface Props {
 }
 
 export default function Strategy({ name, index, value, isActive, onClick }: Props) {
+    const gradient = value === 8 ? 'from-[#D66391] via-[#753A96] to-[#5A4193]' : 'from-neutral-700 to-neutral-800';
+
     return (
         <div
-            className={`w-full max-w-48 text-center cursor-pointer rounded-lg bg-gradient-to-b from-neutral-700 to-neutral-800 border-solid border-2 ${
+            className={`w-full max-w-48 text-center cursor-pointer rounded-lg bg-gradient-to-b ${gradient} border-solid border-2 ${
                 isActive ? 'border-lime-400' : 'border-neutral-900'
             }`}
             onClick={onClick}
