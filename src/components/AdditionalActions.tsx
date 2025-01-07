@@ -87,12 +87,16 @@ export default function AdditionalActions() {
                         <Button onClick={() => dispatch(resetCurrentGearAndCards())}>Clear Cards and Gear</Button>
                         <div className='flex'>
                             <Button onClick={() => dispatch(resetCurrentCards())}>Clear Cards</Button>
-                            <Button onClick={() => dispatch(resetCurrentGear())}>Clear Gear</Button>
+                            <Button className='mb-8' onClick={() => dispatch(resetCurrentGear())}>
+                                Clear Gear
+                            </Button>
                         </div>
-                        <br />
+
                         <Button onClick={handleExport}>Export data</Button>
-                        <Button onClick={handleImport}>Import data</Button>
-                        <br />
+                        <Button className='mb-8' onClick={handleImport}>
+                            Import data
+                        </Button>
+
                         <Button onClick={handleClearBadges} className='opacity-50 hover:opacity-100'>
                             Clear Badges (this Strategy)
                         </Button>

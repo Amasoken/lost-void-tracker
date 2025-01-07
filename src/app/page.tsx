@@ -12,22 +12,24 @@ export default function Home() {
                             </button>
                         </Link>
                         <div className='mx-2 max-h-full overflow-y-auto text-justify'>
-                            <p className='mt-4'>Lost Void tracker for Zenless Zone Zero.</p>
-                            <p>Made to keep track of your Gear badges per Strategy.</p>
-                            <p>Think of this as a notepad on a separate window or screen.</p>
-
-                            <p className='mt-4'>Mark your Gear and Cards in your Lost Void run,</p>
-                            <p>Aim to finish the run with some Gear and at least 4 Cards of the corresponding type,</p>
-                            <p>
-                                And when you get the shiny badge, mark it so you know which Gear you do or do not want
-                                in yout next run.
+                            <p className='mt-4'>
+                                Lost Void tracker for Zenless Zone Zero is made to keep track of your Gear badges per
+                                Strategy. Think of this as a notepad on a separate window or screen.
                             </p>
 
-                            <p className='mt-4'>Repeat until all the Strategies have all 8 Gear challenge completed,</p>
-                            <p>And the entire Strategy collection has shiny 8 badges.</p>
+                            <p className='mt-4'>
+                                Mark your Gear and Cards in your Lost Void run. Aim to finish the run with some Gear and
+                                at least 4 Cards of the corresponding type. When you get the shiny badge, mark it so you
+                                know which Gear you do or do not want in your next run.
+                            </p>
 
                             <p className='mt-4'>
-                                You can find the project on{' '}
+                                Repeat until all the Strategies have all 8 Gear challenge (badges) completed, and the
+                                entire Strategy collection has shiny 8 badges.
+                            </p>
+
+                            <p className='mt-4'>
+                                You can find this project on{' '}
                                 <Link
                                     href='https://github.com/Amasoken/lost-void-tracker'
                                     target='_blank'
