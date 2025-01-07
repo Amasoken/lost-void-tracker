@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Home() {
     return (
         <div className='flex flex-col items-center justify-center w-screen h-screen font-[family-name:var(--font-geist-sans)]'>
-            <main className='bg-neutral-800 rounded-xl p-4 max-w-screen-sm w-full max-h-[50%] h-full'>
+            <main role='main' className='bg-neutral-800 rounded-xl p-4 max-w-screen-sm w-full max-h-[50%] h-full'>
                 <div className='bg-neutral-900 rounded-xl p-4 w-full h-full'>
                     <div className='h-full flex flex-col'>
                         <Link className='m-2' href='/tracker'>

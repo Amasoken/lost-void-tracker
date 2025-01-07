@@ -7,7 +7,7 @@ import { CardTypes } from '@/types/enums';
 
 export default function Page() {
     return (
-        <main className='select-none w-full h-full overflow-x-hidden pt-2'>
+        <main role='main' className='select-none w-full h-full overflow-x-hidden pt-2'>
             <div className='mt-4 w-full max-w-screen-2xl max-h-full p-0 rounded-xl bg-neutral-800 mx-auto sm:p-4 mb-4'>
                 <div className='w-full p-4 py-0 rounded-xl bg-neutral-900 mx-auto sm:p-4'>
                     <StrategyProgress />

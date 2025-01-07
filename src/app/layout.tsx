@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         siteName: 'Lost Void Tracker',
         images: [
             {
-                url: '/og-image.jpg',
+                url: '/og-image.webp',
                 width: 1200,
                 height: 630,
                 alt: 'Image of the Lost Void Tracker website',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Lost Void Tracker',
         description: 'Track your Gear badges and Strategy progress in the Lost Void gamemode of Zenless Zone Zero.',
-        images: ['/og-image.jpg'],
+        images: ['/og-image.webp'],
     },
 };
 
