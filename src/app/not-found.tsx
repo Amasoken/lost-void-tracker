@@ -7,8 +7,7 @@ export default function NotFound() {
             <div className='bg-neutral-800 rounded-xl p-4 mx-8 max-w-screen-sm w-full max-h-[50%] h-full'>
                 <div className='bg-neutral-900 rounded-xl p-4 w-full h-full'>
                     <h1>404 Not Found</h1>
-                    <h2>That&apos;s not the page you&apos;re looking for.</h2>
-                    <br />
+                    <h2 className='mb-6'>That&apos;s not the page you&apos;re looking for.</h2>
                     <Link href='/'>
                         <h3>Return Home</h3>
                     </Link>

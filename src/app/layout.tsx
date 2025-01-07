@@ -43,6 +43,7 @@ export const metadata: Metadata = {
         description: 'Track your Gear badges and Strategy progress in the Lost Void gamemode of Zenless Zone Zero.',
         images: ['/og-image.webp'],
     },
+    metadataBase: new URL('https://lost-void-tracker.vercel.app/'),
 };
 
 export default function RootLayout({
