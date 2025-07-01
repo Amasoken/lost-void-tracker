@@ -8,7 +8,7 @@ import {
     selectState,
 } from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch } from '@/lib/hooks';
-import stateSchema from '@/lib/validation/stateSchema';
+import stateSchema, { stateSchemaV0 } from '@/lib/validation/stateSchema';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import BaseButton, { Props as ButtonProps } from './common/Button';
@@ -43,7 +43,7 @@ export default function AdditionalActions() {
         prompt("Here's your data. Copy it and store somewhere", JSON.stringify(state));
     };
 
-    const handleImport = () => {
+    const handleImport = async () => {
         const data = prompt('Enter the data to import:');
         if (!data) {
             return;
@@ -61,13 +61,36 @@ export default function AdditionalActions() {
             return showError(error);
         }
 
-        stateSchema
+        const error = await stateSchema
             .validate(json)
             .then(() => {
                 dispatch(importState({ state: json }));
                 alert('Import success!');
             })
-            .catch(showError);
+            .catch((error) => error);
+
+        if (error) {
+            // check if it's the older version of exported data
+            stateSchemaV0
+                .validate(json)
+                .then(() => {
+                    // manually set state and let the migrations handle the rest
+                    localStorage.setItem(
+                        'persist:root',
+                        JSON.stringify({
+                            strategy: JSON.stringify(json),
+                            _persist: JSON.stringify({ version: -1, rehydrated: false }),
+                        })
+                    );
+
+                    alert('Import success! Old data version detected, page will reload now.');
+                    window.location.reload();
+                })
+                .catch(() => {
+                    // not an older data, so just show the error
+                    showError(error);
+                });
+        }
     };
 
     return (
