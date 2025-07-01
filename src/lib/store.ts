@@ -2,6 +2,7 @@ import type { Action, ThunkAction } from '@reduxjs/toolkit';
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import { strategySlice } from './features/strategy/strategySlice';
+import { persistMigrate } from './migrations';
 import storage from './safeStorage';
 
 const rootReducer = combineSlices(strategySlice);
@@ -10,6 +11,8 @@ export type RootState = ReturnType<typeof rootReducer>;
 export const persistConfig = {
     key: 'root',
     storage,
+    version: 1,
+    migrate: persistMigrate,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface CardState {
+    [CardTypes.mobile]: number;
     [CardTypes.ultimate]: number;
     [CardTypes.anomaly]: number;
     [CardTypes.dexterity]: number;
@@ -14,26 +15,37 @@ interface GearState {
     badges: boolean[];
 }
 
+interface StrategyData {
+    gear: GearState;
+    cards: CardState;
+}
+
 // gear and card state stored per strategy, in other words "save slots"
 export interface StrategyState {
     currentStrategy: number;
-    data: { gear: GearState; cards: CardState }[];
+    data: StrategyData[];
 }
 
-const initialState: StrategyState = {
-    currentStrategy: 1,
-    data: Array.from({ length: 9 }, () => ({
+export const getInitialStrategyState = () => {
+    return {
         gear: {
-            active: [false, false, false, false, false, false, false, false],
-            badges: [false, false, false, false, false, false, false, false],
+            active: Array.from({ length: 10 }, () => false),
+            badges: Array.from({ length: 10 }, () => false),
+            // badges: [false, false, false, false, false, false, false, false],
         },
         cards: {
+            [CardTypes.mobile]: 0,
             [CardTypes.ultimate]: 0,
             [CardTypes.anomaly]: 0,
             [CardTypes.dexterity]: 0,
             [CardTypes.adversity]: 0,
         },
-    })),
+    };
+};
+
+const initialState: StrategyState = {
+    currentStrategy: 1,
+    data: Array.from({ length: 12 }, getInitialStrategyState),
 };
 
 function getCurrentData(state: StrategyState) {
@@ -96,6 +108,7 @@ export const strategySlice = createSlice({
         selectActiveGear: (state) => getCurrentGear(state).active,
         selectGearBadges: (state) => getCurrentGear(state).badges,
 
+        [CardTypes.mobile]: (state) => getCurrentCards(state)[CardTypes.mobile],
         [CardTypes.ultimate]: (state) => getCurrentCards(state)[CardTypes.ultimate],
         [CardTypes.anomaly]: (state) => getCurrentCards(state)[CardTypes.anomaly],
         [CardTypes.dexterity]: (state) => getCurrentCards(state)[CardTypes.dexterity],

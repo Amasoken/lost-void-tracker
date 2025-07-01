@@ -8,6 +8,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 const gradients = {
+    [CardTypes.mobile]: 'bg-gradient-to-b from-[#2B3678] via-[#6272D5] to-[#2B3678] from-0% via-30%', // TODO
     [CardTypes.ultimate]: 'bg-gradient-to-b from-[#C66915] via-[#FFAD20] to-[#C66915] from-0% via-30%',
     [CardTypes.anomaly]: 'bg-gradient-to-b from-[#2F711F] via-[#58B241] to-[#2F711F] from-0% via-30%',
     [CardTypes.dexterity]: 'bg-gradient-to-b from-[#F14719] via-[#F9D203] to-[#F14719] from-0% via-30%',

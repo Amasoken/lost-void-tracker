@@ -3,6 +3,9 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Strategy from './Strategy';
 
 const strategyList: string[] = [
+    'Sneak Attack',
+    'Upper Hand',
+    'Speed Combo',
     'Resonium Passion',
     'Treasure Hunter',
     'Fully Armed',
