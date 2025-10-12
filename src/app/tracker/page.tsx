@@ -19,7 +19,9 @@ export default function Page() {
             </div>
 
             <div className='select-none w-full max-w-screen-2xl p-0 rounded-xl bg-neutral-800 mx-auto mb-8 md:mb-0 sm:p-4'>
-                <div className='flex justify-between flex-wrap w-full p-2 rounded-xl bg-neutral-900 mx-auto sm:p-4 md:flex-nowrap'>
+                <div
+                    className={`flex justify-around flex-wrap p-2 rounded-xl bg-neutral-900 mx-auto sm:p-4 xl:flex-nowrap overflow-hidden overflow-x-auto`}
+                >
                     {Object.values(CardTypes).map((type) => (
                         <Section key={type} cardType={type} />
                     ))}

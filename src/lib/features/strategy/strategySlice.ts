@@ -1,6 +1,6 @@
 import { CardTypes } from '@/types/enums';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 interface CardState {
     [CardTypes.mobile]: number;
@@ -31,7 +31,6 @@ export const getInitialStrategyState = () => {
         gear: {
             active: Array.from({ length: 10 }, () => false),
             badges: Array.from({ length: 10 }, () => false),
-            // badges: [false, false, false, false, false, false, false, false],
         },
         cards: {
             [CardTypes.mobile]: 0,
@@ -103,6 +102,11 @@ export const strategySlice = createSlice({
     selectors: {
         selectCurrentStrategy: (state) => state.currentStrategy,
         selectStrategyData: (state) => state.data,
+
+        selectBadgeCount: createSelector([(state: StrategyState) => state.data], (data) => {
+            return data.map((data) => data.gear.badges.filter((status) => status).length);
+        }),
+
         selectState: (state) => state,
 
         selectActiveGear: (state) => getCurrentGear(state).active,
@@ -135,6 +139,7 @@ export const {
     selectGearBadges,
     selectStrategyData,
     selectState,
+    selectBadgeCount,
     ...cardSelectors
 } = strategySlice.selectors;
 

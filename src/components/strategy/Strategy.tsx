@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function Strategy({ name, index, value, isActive, onClick }: Props) {
-    const gradient = value === 8 ? 'from-[#D66391] via-[#753A96] to-[#5A4193]' : 'from-neutral-700 to-neutral-800';
+    const gradient = value === 10 ? 'from-[#D66391] via-[#753A96] to-[#5A4193]' : 'from-neutral-700 to-neutral-800';
 
     return (
         <div
