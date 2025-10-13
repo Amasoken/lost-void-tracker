@@ -1,5 +1,5 @@
 import { type PersistedState } from 'redux-persist';
-import { CardTypes } from './enums';
+import { type CardTypes } from './enums';
 
 interface V0StoreState {
     currentStrategy: number;
