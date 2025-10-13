@@ -46,6 +46,16 @@ const cardSchema = yup.object(
     )
 );
 
+const optionsSchema = yup.object({
+    currentStrategy: yup.number().integer().min(1).max(12).required(),
+    columns: yup.number().integer().min(0).max(Object.values(CardTypes).length).required(),
+    hiddenTypes: yup
+        .array(yup.mixed<CardTypes>().oneOf(Object.values(CardTypes)))
+        .min(0)
+        .max(Object.values(CardTypes).length)
+        .required(),
+});
+
 const dataSchema = yup
     .array()
     .of(
@@ -58,7 +68,7 @@ const dataSchema = yup
     .required();
 
 const stateSchema = yup.object({
-    currentStrategy: yup.number().integer().min(1).max(12).required(),
+    options: optionsSchema,
     data: dataSchema,
 });
 

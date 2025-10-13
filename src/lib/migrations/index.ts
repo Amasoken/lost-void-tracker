@@ -24,7 +24,11 @@ const migrations = {
             return {
                 ...state,
                 strategy: {
-                    currentStrategy: state.strategy.currentStrategy + 3,
+                    options: {
+                        currentStrategy: state.strategy.currentStrategy + 3,
+                        columns: 0,
+                        hiddenTypes: [],
+                    },
                     data: [
                         ...Array.from({ length: 3 }, getV1StrategyInitialState),
                         ...state.strategy.data.map(({ gear, cards }) => ({

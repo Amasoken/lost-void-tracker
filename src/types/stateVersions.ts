@@ -21,9 +21,13 @@ export type V0PersistedState = {
     strategy: V0StoreState;
 } & Exclude<PersistedState, undefined>;
 
-// three new strategies, two new [Mobile] gear
+// three new strategies, two new [Mobile] gear, separate options
 interface V1StoreState {
-    currentStrategy: number;
+    options: {
+        currentStrategy: number;
+        columns: number;
+        hiddenTypes: CardTypes[];
+    };
     data: {
         gear: {
             active: boolean[]; // 10 gears
