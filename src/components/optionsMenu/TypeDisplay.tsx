@@ -1,5 +1,5 @@
 import { CardTypes } from '@/types/enums';
-import BaseButton, { Props as ButtonProps } from '../common/Button';
+import BaseButton, { type Props as ButtonProps } from '../common/Button';
 import CardGradient from '../card/CardGradient';
 
 const withSpacing = (WrappedComponent: React.FC<ButtonProps>) => {

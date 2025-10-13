@@ -1,5 +1,5 @@
 import { CardTypes } from '@/types/enums';
-import { type V0PersistedState, type V1PersistedState } from '@/types/stateVersions';
+import type { V0PersistedState, V1PersistedState } from '@/types/stateVersions';
 import { createMigrate } from 'redux-persist';
 
 const getV1StrategyInitialState = () => {
@@ -52,8 +52,7 @@ const migrations = {
     },
 };
 
-//@ts-expect-error
-// MigrationManifest doesn't seem to consider that
+//@ts-expect-error MigrationManifest doesn't seem to consider that
 // aside from '_persist' there will be actual state fields with types
 // { _persist: { version: 0, rehydrated: true }, strategy: { /* state, not undefined */} };
 export const persistMigrate = createMigrate(migrations, { debug: true });

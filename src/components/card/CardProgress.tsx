@@ -1,6 +1,6 @@
 import { cardSelectors, setCardCount } from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { CardTypes } from '@/types/enums';
+import type { CardTypes } from '@/types/enums';
 import Card from './Card';
 
 interface Props {

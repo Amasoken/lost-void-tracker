@@ -15,7 +15,7 @@ const strategyList: string[] = [
     'Defence',
     'Ambush',
     'Reinforcement',
-];
+] as const;
 
 export default function StrategyProgress() {
     const dispatch = useAppDispatch();

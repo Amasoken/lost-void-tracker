@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Badge from '../common/Badge';
+import { CardTypes } from '@/types/enums';
 
 interface Props {
     name: string;
@@ -10,7 +11,9 @@ interface Props {
 }
 
 export default function Strategy({ name, index, value, isActive, onClick }: Props) {
-    const gradient = value === 10 ? 'from-[#D66391] via-[#753A96] to-[#5A4193]' : 'from-neutral-700 to-neutral-800';
+    const totalGear = Object.values(CardTypes).length * 2;
+    const gradient =
+        value === totalGear ? 'from-[#D66391] via-[#753A96] to-[#5A4193]' : 'from-neutral-700 to-neutral-800';
 
     return (
         <div

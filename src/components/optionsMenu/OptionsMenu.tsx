@@ -9,6 +9,7 @@ import {
     selectHiddenTypes,
     selectState,
     setColumnCount as setColumnCountAction,
+    type StrategyState,
     toggleHiddenType,
 } from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch } from '@/lib/hooks';
@@ -18,7 +19,7 @@ import { useSelector } from 'react-redux';
 import AdditionalActions from './AdditionalActions';
 import TypeDisplay from './TypeDisplay';
 
-const importData = async (inportState: (data: any) => void) => {
+const importData = async (inportState: (data: StrategyState) => void) => {
     const data = prompt('Enter the data to import:');
     if (!data) {
         return;
@@ -28,7 +29,7 @@ const importData = async (inportState: (data: any) => void) => {
         alert(`Please provide a valid JSON you got with export.\nError: ${error}`);
     };
 
-    let json;
+    let json: StrategyState;
 
     try {
         json = JSON.parse(data);
@@ -94,7 +95,7 @@ export default function OptionsMenu() {
     };
 
     const handleImport = async () => {
-        await importData((data: any) => dispatch(importState({ state: data })));
+        await importData((data: StrategyState) => dispatch(importState({ state: data })));
     };
 
     return (

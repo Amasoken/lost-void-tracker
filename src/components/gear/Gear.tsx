@@ -1,4 +1,4 @@
-import { CardTypes } from '@/types/enums';
+import type { CardTypes } from '@/types/enums';
 import Image from 'next/image';
 import Badge from '../common/Badge';
 import Button from '../common/Button';
