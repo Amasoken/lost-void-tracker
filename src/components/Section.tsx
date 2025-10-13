@@ -10,7 +10,7 @@ interface Props {
 export default function Section({ cardType, className = '' }: Props) {
     return (
         <div
-            className={`mx-2 mb-8 rounded-xl flex flex-col justify-between bg-neutral-800 lg:p-4 md:mb-2 ${className}`}
+            className={`mx-2 mb-8 rounded-xl flex flex-col justify-between bg-neutral-800 lg:p-4 md:mb-2 max-w-fit min-w-[250px] ${className}`}
         >
             <CardProgress cardType={cardType} />
             <div className='mb-2 text-center text-md whitespace-nowrap text-slate-100 text-shadow py-2 sm:text-xl lg:text-2xl xl:text-2xl'>{`[${cardType}]`}</div>
