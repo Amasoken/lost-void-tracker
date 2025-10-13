@@ -11,8 +11,12 @@ export default function Home() {
 
             <div className='mx-2 max-h-full overflow-y-auto text-justify'>
                 <p className='mt-4'>
-                    Lost Void tracker for Zenless Zone Zero is made to keep track of your Gear badges per Strategy.
-                    Think of this as a notepad on a separate window or screen.
+                    Lost Void tracker for{' '}
+                    <Link href='https://zenless.hoyoverse.com/en-us/' target='_blank' rel='noopener noreferrer'>
+                        Zenless Zone Zero
+                    </Link>{' '}
+                    is made to keep track of your Gear badges per Strategy. Think of this as a notepad on a separate
+                    window or screen.
                 </p>
 
                 <p className='mt-4'>
