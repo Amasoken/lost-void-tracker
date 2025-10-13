@@ -1,7 +1,7 @@
 import { type HTMLAttributes, type ReactNode } from 'react';
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
-    children: ReactNode;
+    children?: ReactNode;
     border?: string;
     background?: string;
 }
