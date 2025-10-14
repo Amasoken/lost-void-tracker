@@ -84,8 +84,8 @@ export default function AdditionalActions({
 
                         <Button onClick={resetGearAndCards}>Clear Cards and Gear</Button>
                         <div className='flex'>
-                            <Button onClick={resetGear}>Clear Cards</Button>
-                            <Button className='mb-8' onClick={resetCards}>
+                            <Button onClick={resetCards}>Clear Cards</Button>
+                            <Button className='mb-8' onClick={resetGear}>
                                 Clear Gear
                             </Button>
                         </div>

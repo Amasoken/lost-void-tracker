@@ -100,7 +100,7 @@ export default function OptionsMenu() {
             navigator.clipboard.writeText(JSON.stringify(state));
             alert('Data copied to clipboard. You can paste and save it somewhere');
         } catch (error) {
-            alert("Couldn't copy data to clipboard.");
+            alert("Couldn't copy data to clipboard. Please try file export instead.");
             console.log('Export error:', error);
         }
     };
