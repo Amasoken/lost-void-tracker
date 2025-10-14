@@ -1,8 +1,11 @@
-import { selectCurrentStrategy, selectStrategyData, setCurrentStrategy } from '@/lib/features/strategy/strategySlice';
+import { selectBadgeCount, selectCurrentStrategy, setCurrentStrategy } from '@/lib/features/strategy/strategySlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Strategy from './Strategy';
 
 const strategyList: string[] = [
+    'Sneak Attack',
+    'Upper Hand',
+    'Speed Combo',
     'Resonium Passion',
     'Treasure Hunter',
     'Fully Armed',
@@ -12,16 +15,15 @@ const strategyList: string[] = [
     'Defence',
     'Ambush',
     'Reinforcement',
-];
+] as const;
 
 export default function StrategyProgress() {
     const dispatch = useAppDispatch();
     const currentStrategy = useAppSelector(selectCurrentStrategy);
-    const strategyProgress = useAppSelector(selectStrategyData);
-    const progressByStrategy = strategyProgress.map((data) => data.gear.badges.filter((status) => status).length);
+    const progressByStrategy = useAppSelector(selectBadgeCount);
 
     return (
-        <div className='w-full grid justify-items-center grid-cols-3 gap-2 md:grid-cols-5 lg:grid-cols-9'>
+        <div className='w-full grid justify-items-center grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-12'>
             {strategyList.map((strategy, index) => (
                 <Strategy
                     key={strategy}

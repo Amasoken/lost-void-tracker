@@ -1,7 +1,7 @@
 import { type HTMLAttributes, type ReactNode } from 'react';
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
-    children: ReactNode;
+    children?: ReactNode;
     border?: string;
     background?: string;
 }
@@ -15,7 +15,7 @@ export default function Button({
 }: Props) {
     return (
         <button
-            className={`w-full pointer h-10 rounded-lg border-2 border-solid ${border} ${background} text-slate-50 text-md ${className}`}
+            className={`w-full cursor-pointer h-10 rounded-lg border-2 border-solid ${border} ${background} text-slate-50 text-md ${className}`}
             {...restProps}
         >
             {children}

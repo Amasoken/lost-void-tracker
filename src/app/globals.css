@@ -1,4 +1,4 @@
-@tailwind base;
+@import 'tailwindcss';
 
 h1 {
     @apply text-2xl;
@@ -13,12 +13,9 @@ a {
     @apply underline;
 }
 
-@tailwind components;
-@tailwind utilities;
-
 :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-neutral-900);
+    --foreground: var(--color-slate-50);
 }
 
 body {
@@ -29,4 +26,31 @@ body {
 
 .text-shadow {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.has-tooltip {
+    @apply relative;
+}
+
+.has-tooltip::before,
+.has-tooltip::after {
+    content: attr(data-tooltip);
+    @apply invisible opacity-0 absolute;
+    @apply z-50 left-[50%] -translate-x-1/2;
+}
+
+.has-tooltip:hover::before,
+.has-tooltip:hover::after {
+    @apply visible opacity-100;
+}
+
+.has-tooltip::before {
+    content: attr(data-tooltip);
+    @apply px-2 py-1 rounded-lg text-nowrap text-center bottom-[125%];
+    @apply border-2 border-solid border-neutral-600 bg-neutral-900 text-slate-50;
+}
+
+.has-tooltip::after {
+    content: '';
+    @apply border-8 border-solid border-transparent border-t-neutral-600 bottom-[85%];
 }
