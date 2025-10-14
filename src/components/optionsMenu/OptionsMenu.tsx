@@ -19,8 +19,8 @@ import { useSelector } from 'react-redux';
 import AdditionalActions from './AdditionalActions';
 import TypeDisplay from './TypeDisplay';
 
-const importData = async (inportState: (data: StrategyState) => void) => {
-    const data = prompt('Enter the data to import:');
+const importData = async (inportState: (data: StrategyState) => void, text?: string) => {
+    const data = text ?? prompt('Enter the data to import:');
     if (!data) {
         return;
     }
@@ -69,6 +69,11 @@ const importData = async (inportState: (data: StrategyState) => void) => {
     }
 };
 
+const getLocalDate = () => {
+    const offset = new Date().getTimezoneOffset() * 60000;
+    return new Date(Date.now() - offset).toISOString().slice(0, 10);
+};
+
 export default function OptionsMenu() {
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const [cardTypeOpen, setCardTypeOpen] = useState<boolean>(false);
@@ -91,11 +96,51 @@ export default function OptionsMenu() {
     };
 
     const handleExport = () => {
-        prompt("Here's your data. Copy it and store somewhere", JSON.stringify(state));
+        try {
+            navigator.clipboard
+                .writeText(JSON.stringify(state))
+                .then(() => alert('Data copied to clipboard. You can paste and save it somewhere'));
+        } catch (error) {
+            alert(`Couldn't copy data to clipboard. Please try file export instead.\nError: ${error}`);
+            console.log('Export error:', error);
+        }
+    };
+
+    const handleFileExport = () => {
+        const data = JSON.stringify(state);
+        const blob = new Blob([data], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `zzz-lost-void-tracker-backup_${getLocalDate()}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     };
 
     const handleImport = async () => {
-        await importData((data: StrategyState) => dispatch(importState({ state: data })));
+        await importData((data) => dispatch(importState({ state: data })));
+    };
+
+    const handleFileImport = async () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json,application/json,text/plain';
+        input.style.display = 'none';
+
+        input.onchange = async () => {
+            const file = input.files?.[0];
+            document.body.removeChild(input);
+
+            if (file) {
+                const text = await file.text();
+                await importData((data) => dispatch(importState({ state: data })), text);
+            }
+        };
+
+        document.body.appendChild(input);
+        input.click();
     };
 
     return (
@@ -104,7 +149,9 @@ export default function OptionsMenu() {
                 isOpen={menuOpen}
                 setOpen={setMenuOpen}
                 exportData={handleExport}
+                exportDataToFile={handleFileExport}
                 importData={handleImport}
+                importDataFromFile={handleFileImport}
                 resetGearAndCards={() => dispatch(resetCurrentGearAndCards())}
                 resetGear={() => dispatch(resetCurrentGear())}
                 resetCards={() => dispatch(resetCurrentCards())}
