@@ -97,10 +97,11 @@ export default function OptionsMenu() {
 
     const handleExport = () => {
         try {
-            navigator.clipboard.writeText(JSON.stringify(state));
-            alert('Data copied to clipboard. You can paste and save it somewhere');
+            navigator.clipboard
+                .writeText(JSON.stringify(state))
+                .then(() => alert('Data copied to clipboard. You can paste and save it somewhere'));
         } catch (error) {
-            alert("Couldn't copy data to clipboard. Please try file export instead.");
+            alert(`Couldn't copy data to clipboard. Please try file export instead.\nError: ${error}`);
             console.log('Export error:', error);
         }
     };
