@@ -14,7 +14,9 @@ interface Props {
     isOpen: boolean;
     setOpen: (isOpen: boolean) => void;
     exportData: () => void;
+    exportDataToFile: () => void;
     importData: () => Promise<void>;
+    importDataFromFile: () => Promise<void>;
     resetGearAndCards: () => void;
     resetGear: () => void;
     resetCards: () => void;
@@ -28,7 +30,9 @@ export default function AdditionalActions({
     isOpen,
     setOpen,
     exportData,
+    exportDataToFile,
     importData,
+    importDataFromFile,
     resetGearAndCards,
     resetGear,
     resetCards,
@@ -53,7 +57,7 @@ export default function AdditionalActions({
                     <div className='bg-neutral-900 rounded-xl flex flex-col max-w-80 px-4 py-6'>
                         <div className='mb-8'>
                             <span>Fix column amount to:</span>
-                            <div className='flex'>
+                            <div className='flex mt-2'>
                                 <BaseButton
                                     border={
                                         columns === 0 ? 'border-lime-400' : 'border-neutral-800 hover:border-lime-400'
@@ -86,10 +90,21 @@ export default function AdditionalActions({
                             </Button>
                         </div>
 
-                        <Button onClick={exportData}>Export data</Button>
-                        <Button className='mb-8' onClick={importData}>
-                            Import data
-                        </Button>
+                        <span>Export data:</span>
+                        <div className='flex mb-2'>
+                            <Button onClick={exportData}>Copy</Button>
+                            <Button onClick={exportDataToFile}>Download</Button>
+                        </div>
+
+                        <span>Import data:</span>
+                        <div className='flex'>
+                            <Button className='mb-8' onClick={importData}>
+                                Paste
+                            </Button>
+                            <Button className='mb-8' onClick={importDataFromFile}>
+                                Upload file
+                            </Button>
+                        </div>
 
                         <Button onClick={clearBadges} className='opacity-50 hover:opacity-100'>
                             Clear Badges (this Strategy)
