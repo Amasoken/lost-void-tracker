@@ -1,4 +1,4 @@
-@tailwind base;
+@import 'tailwindcss';
 
 h1 {
     @apply text-2xl;
@@ -13,12 +13,9 @@ a {
     @apply underline;
 }
 
-@tailwind components;
-@tailwind utilities;
-
 :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-neutral-900);
+    --foreground: var(--color-slate-50);
 }
 
 body {
